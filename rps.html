@@ -15,18 +15,47 @@
       let choice;
       switch (randInt) {
         case 0:
-          choice = "Rock"
+          choice = "rock"
           break;
         case 1:
-          choice = "Paper"
+          choice = "paper"
           break;
         case 2:
-          choice = "Scissors"
+          choice = "scissors"
           break;
       }
       return choice;
     }
 
+    //Plays a round of rock paper scissors
+    function playRound(playerChoice, computerChoice) {
+      playerChoice = playerChoice.toLowerCase();
+      let result = "You Lose! " + captalize(computerChoice) + " beats " +
+        captalize(playerChoice);
+      if ((playerChoice == "rock" && computerChoice == "scissors") ||
+        (playerChoice == "paper" && playerChoice == "rock") ||
+        (playerChoice == "scissors" && computerChoice == "paper")) {
+        result = "You Win! " + captalize(playerChoice) + " beats " +
+          captalize(computerChoice);
+      } else if (playerChoice == computerChoice) {
+        result = "Its a draw! Both chose: " + captalize(computerChoice);
+      }
+      return result
+    }
+
+    //Helper functions
+
+    //Helper function to capitalize the first letter of a string
+    function captalize(someString) {
+      let firstLetter = someString.charAt(0).toUpperCase();
+      let stringRemainder = someString.slice(1);
+      return firstLetter + stringRemainder
+    }
+
+    //Temporary variables for testing
+    const playerChoice = "ROCK"
+    let computerChoice = computerPlay()
+    console.log(playRound(playerChoice, computerChoice))
   </script>
 </body>
 
