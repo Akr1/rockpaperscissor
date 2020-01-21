@@ -29,33 +29,66 @@
 
     //Plays a round of rock paper scissors
     function playRound(playerChoice, computerChoice) {
-      playerChoice = playerChoice.toLowerCase();
-      let result = "You Lose! " + captalize(computerChoice) + " beats " +
-        captalize(playerChoice);
+      let result = "computer"
       if ((playerChoice == "rock" && computerChoice == "scissors") ||
         (playerChoice == "paper" && playerChoice == "rock") ||
         (playerChoice == "scissors" && computerChoice == "paper")) {
-        result = "You Win! " + captalize(playerChoice) + " beats " +
-          captalize(computerChoice);
+        result = "player"
       } else if (playerChoice == computerChoice) {
-        result = "Its a draw! Both chose: " + captalize(computerChoice);
+        result = "draw"
       }
       return result
+    }
+
+    function game() {
+      let computerScore = 0;
+      let humanScore = 0;
+      let output;
+      for (i = 0; i < 5; i++) {
+        let playerChoice = getPlayerChoice();
+        let computerChoice = computerPlay();
+        result = playRound(playerChoice, computerChoice);
+        switch (result) {
+          case "computer":
+            computerScore++;
+            break;
+          case "player":
+            humanScore++;
+            break;
+          case "default":
+            break;
+        }
+      }
+
+      if (humanScore > computerScore) {
+        output = "Congrat! You won with a score of: " + humanScore;
+      } else if (humanScore == computerScore) {
+        output = "Its a draw! Both of you scored: " + humanScore;
+      } else {
+        output = "The computer won. You lost with a score of: " + humanScore;
+      }
+
+      return output
     }
 
     //Helper functions
 
     //Helper function to capitalize the first letter of a string
-    function captalize(someString) {
-      let firstLetter = someString.charAt(0).toUpperCase();
-      let stringRemainder = someString.slice(1);
-      return firstLetter + stringRemainder
+    function getPlayerChoice() {
+      let valid = 0
+      let playerChoice;
+      while (valid == 0) {
+        playerChoice = prompt("Please enter one of the following options: Rock, Paper, or Scissors")
+        if (typeof playerChoice == "string") {
+          playerChoice = playerChoice.toLowerCase();
+          valid = playerChoice == "rock" || playerChoice == "paper" || playerChoice == "scissors" || 0
+        }
+      }
+      return playerChoice
     }
 
     //Temporary variables for testing
-    const playerChoice = "ROCK"
-    let computerChoice = computerPlay()
-    console.log(playRound(playerChoice, computerChoice))
+    console.log(game())
   </script>
 </body>
 
