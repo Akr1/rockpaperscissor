@@ -8,6 +8,25 @@
 
 <body>
   <script>
+    //Randomly returns the computer's choice for
+    //Rock Paper Scissors
+    function computerPlay() {
+      let randInt = Math.floor(Math.random() * 3);
+      let choice;
+      switch (randInt) {
+        case 0:
+          choice = "Rock"
+          break;
+        case 1:
+          choice = "Paper"
+          break;
+        case 2:
+          choice = "Scissors"
+          break;
+      }
+      return choice;
+    }
+
   </script>
 </body>
 
