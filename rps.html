@@ -40,6 +40,8 @@
       } else if (playerChoice == computerChoice) {
         result = "draw"
       }
+      console.log("Player: " + playerChoice + " Computer: " + computerChoice);
+      console.log(result);
       return result
     }
 
@@ -89,6 +91,15 @@
       }
       return playerChoice
     }
+
+    //Event Listeners
+    const rockBtn = document.querySelector('#rock');
+    const paperBtn = document.querySelector('#paper');
+    const scissorBtn = document.querySelector('#scissors');
+
+    rockBtn.addEventListener('click', () => { playRound("rock", computerPlay()) });
+    paperBtn.addEventListener('click', () => { playRound("paper", computerPlay()) });
+    scissorBtn.addEventListener('click', () => { playRound("scissors", computerPlay()) });
 
     //Temporary variables for testing
     //console.log(game())
